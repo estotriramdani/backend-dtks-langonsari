@@ -4,33 +4,32 @@ if (!isset($_SESSION['login'])) {
   header("Location: login.php");
   exit;
 }
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cari</title>
+    <title><?php echo $title;  ?></title>
 
     <!-- CDNs -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-      crossorigin="anonymous"
+      href="css/bootstrap-icons.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
-    />
+    <link rel="stylesheet" href="css/select2.min.css">
 
     <style>
       .paging-button {
         font-size: 1.5em;
       }
     </style>
+
+  <script type="text/javascript" src="script/jquery.js"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
@@ -42,7 +41,7 @@ if (!isset($_SESSION['login'])) {
       style="background-color: #0a2e36"
     >
       <div class="container">
-        <a class="navbar-brand" href="#">DTKS Langonsari</a>
+        <a class="navbar-brand" href="./">DTKS Langonsari</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -70,7 +69,12 @@ if (!isset($_SESSION['login'])) {
             </li>
             <li class="nav-item" id="ajukanNav">
               <a class="nav-link" href="ajukan.php"
-                ><i class="bi bi-plus-circle"></i> Pengajuan Baru</a
+                ><i class="bi bi-plus-circle"></i> Pengajuan DTKS Baru</a
+              >
+            </li>
+            <li class="nav-item" id="ajukanArt">
+              <a class="nav-link" href="tambah-art.php"
+                ><i class="bi bi-person-plus"></i> Pengajuan ART Baru</a
               >
             </li>
             <li class="nav-item" id="ajukanNav">

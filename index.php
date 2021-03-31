@@ -1,6 +1,11 @@
 
 <?php 
-include_once 'template/navbar.php'
+$title = 'Beranda';
+include_once 'config/koneksi.php';
+include_once 'template/navbar.php';
+$query = "SELECT * FROM dtks";
+$result = mysqli_query($koneksi, $query);
+
 ?>
     <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
@@ -22,7 +27,7 @@ include_once 'template/navbar.php'
             <div class="col-sm-5">
               <div class="card">
                 <div class="card-header-top">
-                  <p><i class="bi bi-calculator"></i> 879</p>
+                  <p><i class="bi bi-calculator"></i> <?php echo mysqli_num_rows($result) ?></p>
                 </div>
                 <div class="card-body">
                   <p class="card-text">Jumlah DTKS Saat Ini.</p>
@@ -34,9 +39,9 @@ include_once 'template/navbar.php'
                 <div class="card-header-top">
                   <div class="card-header-top">
                     <p>
-                      <span class="number">13:00 </span> <br />
+                      <span class="number"><?php echo date('H:i a'); ?></span> <br />
                       <span style="font-size: 0.8em">
-                        Selasa, 28 Februari 2021</span
+                        <?php echo date('D, d-m-Y') ?></span
                       >
                     </p>
                   </div>

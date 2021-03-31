@@ -11,12 +11,19 @@ include_once 'config/koneksi.php';
   $halamanAktif = (isset($_GET['halaman']) ? $_GET['halaman'] : 1 );
   $awalData = ($jumlahDataPerhalaman * $halamanAktif) - $jumlahDataPerhalaman;
 
-  $query = mysqli_query($koneksi, "SELECT * FROM dtks LIMIT $awalData, $jumlahDataPerhalaman"); 
+  $query = mysqli_query($koneksi, "SELECT * FROM dtks  ORDER BY id_dtks DESC LIMIT $awalData, $jumlahDataPerhalaman"); 
+  $title = 'Cari Data DTKS';
 
 ?>
 
 <?php include_once 'template/navbar.php' ?>
-
+<div class="preloader">
+  <div>
+    <div class="spinner-border text-white" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
     <!-- Content -->
     <div class="container mt-3">
       <!-- Form Pencarian -->
@@ -61,10 +68,24 @@ include_once 'config/koneksi.php';
         </table>
       </div>
       <!-- End tabel hasil pencarian -->
-
+<hr class="mt-5">
       <!-- Tabel Semua DTKS -->
       <div class="semua mt-3">
-        <h4 class="mb-3">Semua Data DTKS</h4>
+        <div class="row">
+          <div class="col-sm">
+            <h4 class="mb-3">Semua Data DTKS</h4>  
+          </div>
+          <div class="col-sm">
+            <h5><?php echo "(Halaman $halamanAktif dari $jumlahHalaman)"; ?></h5>
+          </div>
+          <div class="col-sm ">
+            <div class="float-right">
+              <a href="config/backupdb.php?nama_tabel=dtks" class="btn btn-info">Backup Data DTKS</a>
+              <a href="config/backupdb.php?nama_tabel=art_bdt" class="btn btn-info">Backup Data ART BDT</a>                
+            </div>
+          </div>
+        </div>
+        
         <!-- Navigasi -->
       <div class="table-responsive">
         <table class="table table-striped">
@@ -85,8 +106,14 @@ include_once 'config/koneksi.php';
             </tr>
           </thead>
           <tbody>
-            <?php foreach( $query as $row ) : ?>
-              <tr>
+            <?php 
+              while($row = mysqli_fetch_array($query)){
+            ?>
+              <tr
+              <?php if ($row['status'] == 'Pengajuan Baru') {
+                echo "class='bg-info text-white'";
+              }?>
+              >
                 <td><?= $row['id_dtks']; ?></td>
                 <td><?= $row['alamat']; ?></td>
                 <td><?= $row['nik']; ?></td>
@@ -94,17 +121,24 @@ include_once 'config/koneksi.php';
                 <td><?= $row['jml_kel']; ?></td>
                 <td><?= $row['jml_art']; ?></td>
                 <td><?= $row['perubahan']; ?></td>
-                <td><?= $row['program']; ?></td>
+                <td><?= preg_replace("/[^a-zA-Z]/", " ", $row['program']); ?></td>
                 <td><?= $row['rt']; ?></td>
                 <td><?= $row['rw']; ?></td>
                 <td><?= $row['status']; ?></td>
-                <td><a href="detail.php?id=<?= $row['id_dtks']; ?>">Detail</a></td>
+                <td><a 
+                <?php if ($row['status'] == 'Pengajuan Baru') {
+                  echo "class='text-white' style='text-decoration: underline;'";
+                }?>
+                 href="detail.php?id=<?= $row['id_dtks']; ?>">Detail</a></td>
               </tr>
-            <?php endforeach; ?>
+            <?php 
+          }
+              // endforeach; 
+            ?>
           </tbody>
         </table>
       </div>
-
+<div class="container-fluid">
         <div class="row text-center mbt-3">
     <div class="col-1">
       <?php if($halamanAktif > 1): ?>
@@ -131,9 +165,11 @@ include_once 'config/koneksi.php';
     </div>
   </div>
       </div>
-      <!-- Tabel Semua DTKS -->
+
+</div>      <!-- Tabel Semua DTKS -->
     </div>
     <!-- End Content -->
 
     <script src="script/ajax.js"></script>
+    <script src="script/preloader.js"></script>
 <?php include_once 'template/footer.php' ?>

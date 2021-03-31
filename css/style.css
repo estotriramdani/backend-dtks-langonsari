@@ -105,6 +105,24 @@
   padding: 20px 0;
 }
 
+.preloader {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  background: linear-gradient(to right, #212529, #0a2e36);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.hide-preloader {
+  opacity: 0;
+  transition: .3s;
+  z-index: -999;
+}
+
 @media screen and (max-width: 578px) {
   .card {
     margin-bottom: 15px;
@@ -116,4 +134,6 @@
     margin-bottom: 15px;
   }
 }
+
+
 /*# sourceMappingURL=style.css.map */

@@ -2,14 +2,23 @@
 
 include_once 'config/koneksi.php';
 
+
 $id = $_GET['id'];
+
+$title = "Detail: $id";
 
 $query = "SELECT * FROM art_bdt WHERE idbdt = '$id'";
 
 $result = mysqli_query($koneksi, $query);
 include_once 'template/navbar.php';
 ?>
-
+<div class="preloader">
+  <div>
+    <div class="spinner-border text-white" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
 
     <div class="container mt-4" style="min-height: 75vh;">
     <div class="breadcumbs mb-4 shadow-sm">
@@ -51,7 +60,7 @@ include_once 'template/navbar.php';
                 <td colspan="11">ID DTKS tidak valid</td>
               </tr>
             <?php } else if (mysqli_num_rows($result) > 0){?>
-            <?php foreach( $result as $row ) : ?>
+            <?php while($row = mysqli_fetch_array($result)){ ?>
               <tr>
                 <td><?= $row['rt']; ?> / <?= $row['rw']; ?></td>
                 <td><?= $row['idartbdt']; ?></td>
@@ -65,11 +74,12 @@ include_once 'template/navbar.php';
                 <td><?= $row['namagadis_ibukandung']; ?></td>
                 <td><?= $row['psnoka_bpjs']; ?></td>
               </tr>
-            <?php endforeach; ?>
+            <?php } ?>
             <?php } ?>
           </tbody>
         </table>
       </div>
     </div>
+    <script src="script/preloader.js"></script>
 
     <?php include_once 'template/footer.php'; ?>

@@ -40,8 +40,12 @@ $result = mysqli_query($koneksi, $query);
                 <td colspan="12" class="text-center text-danger">Data tidak ditemukan</td>
               </tr>
             <?php } else {?>
-            <?php foreach( $result as $row ) : ?>
-              <tr>
+            <?php while($row = mysqli_fetch_array($result)){ ?>
+              <tr
+              <?php if ($row['status'] == 'Pengajuan Baru') {
+                echo "class='bg-info text-white'";
+              }?>
+              >
                 <td><?= $row['id_dtks']; ?></td>
                 <td><?= $row['alamat']; ?></td>
                 <td><?= $row['nik']; ?></td>
@@ -53,9 +57,13 @@ $result = mysqli_query($koneksi, $query);
                 <td><?= $row['rt']; ?></td>
                 <td><?= $row['rw']; ?></td>
                 <td><?= $row['status']; ?></td>
-                <td><a href="detail.php?id=<?= $row['id_dtks']; ?>">Detail</a></td>
+                <td><a 
+                <?php if ($row['status'] == 'Pengajuan Baru') {
+                  echo "class='text-white'";
+                }?>
+                href="detail.php?id=<?= $row['id_dtks']; ?>">Detail</a></td>
               </tr>
-            <?php endforeach; ?>
+            <?php } ?>
             <?php } ?>
           </tbody>
         </table>
