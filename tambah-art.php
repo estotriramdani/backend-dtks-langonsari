@@ -48,7 +48,7 @@ include_once 'config/koneksi.php';
   </div>
 
   <div class="form-group row">
-    <label for="nama" class="col-sm-3 col-form-label">nama</label>
+    <label for="nama" class="col-sm-3 col-form-label">Nama</label>
     <div class="col-sm-9">
       <input required type="text" class="form-control" id="nama" name="nama">
     </div>
@@ -66,14 +66,14 @@ include_once 'config/koneksi.php';
   </div>
 
   <div class="form-group row">
-    <label for="tmp_lahir" class="col-sm-3 col-form-label">tmp_lahir</label>
+    <label for="tmp_lahir" class="col-sm-3 col-form-label">Tempat Lahir</label>
     <div class="col-sm-9">
       <input required type="text" class="form-control" id="tmp_lahir" name="tmp_lahir">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="tgl_lahir" class="col-sm-3 col-form-label">tgl_lahir</label>
+    <label for="tgl_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
     <div class="col-sm-9">
       <input required type="date" class="form-control" id="tgl_lahir" name="tgl_lahir">
     </div>
@@ -92,28 +92,28 @@ include_once 'config/koneksi.php';
   </div>
 
   <div class="form-group row">
-    <label for="nik" class="col-sm-3 col-form-label">nik</label>
+    <label for="nik" class="col-sm-3 col-form-label">NIK</label>
     <div class="col-sm-9">
       <input required type="text" class="form-control" id="nik" name="nik">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="no_kk" class="col-sm-3 col-form-label">no_kk</label>
+    <label for="no_kk" class="col-sm-3 col-form-label">No. KK</label>
     <div class="col-sm-9">
       <input required type="text" class="form-control" id="no_kk" name="no_kk">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="namagadis_ibukandung" class="col-sm-3 col-form-label">namagadis_ibukandung</label>
+    <label for="namagadis_ibukandung" class="col-sm-3 col-form-label">Nama Gadis Ibu Kandung</label>
     <div class="col-sm-9">
       <input type="text" class="form-control" id="namagadis_ibukandung" name="namagadis_ibukandung">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="psnoka_bpjs" class="col-sm-3 col-form-label">psnoka_bpjs</label>
+    <label for="psnoka_bpjs" class="col-sm-3 col-form-label">PS No. Ka. BPJS</label>
     <div class="col-sm-9">
       <input type="text" class="form-control" id="psnoka_bpjs" name="psnoka_bpjs">
     </div>
@@ -136,5 +136,5 @@ include_once 'config/koneksi.php';
 <script src="script/art.js"></script>
 <?php 
 
-include_once 'template/footer.php'
+include_once 'template/footer_form.php'
 ?>
